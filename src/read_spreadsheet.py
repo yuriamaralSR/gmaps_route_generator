@@ -29,6 +29,7 @@ def read_spreasheet(file_path):
 def group_packs_by_address(df):
     df_subset = df.loc[:, ['Sequence', 'Destination Address', 'Latitude', 'Longitude']].copy()
     df_subset['Sequence'] = df_subset['Sequence'].astype(str)
+    fixing_lat_long_format(df_subset)
     
     grouped = df_subset.groupby(['Latitude', 'Longitude'], as_index=False).agg({
         'Sequence': lambda x: ', '.join(x),
