@@ -13,7 +13,7 @@ def get_file():
 
 FILE_PATH = get_file()
 
-def read_spreasheet(file_path):
+def read_spreadsheet(file_path):
     if file_path is None:
         return None
     try:
@@ -48,9 +48,3 @@ def fixing_lat_long_format(df):
     df['Latitude'] = df.apply(lambda row: row['Latitude']/ 10000000, axis=1)
     df['Longitude'] = df.apply(lambda row: row['Longitude']/ 10000000, axis=1)
     return df
-
-if __name__ == "__main__":
-    df = read_spreasheet(FILE_PATH)
-    if df is not None:
-        grouped_df = group_packs_by_address(df)
-        print(grouped_df)
