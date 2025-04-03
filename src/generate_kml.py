@@ -5,8 +5,8 @@ def generate_kml(df):
     if df is not None:
         kml = Kml()
         for index, row in df.iterrows():
-            point = kml.newpoint(name=f"Point {index} -- {(row['Destination Address'])}", coords=[(row['Longitude'], row['Latitude'])])
-            point.description = f"Ordem: {(row['Sequence'])}"
+            point = kml.newpoint(name=f"{row['Sequence']} - {(row['Destination Address'])}", coords=[(row['Longitude'], row['Latitude'])])
+            point.description = f"Nº Packs: {(row['Number of Packs'])}"
         
         kml.save("output.kml")
         return kml
@@ -19,4 +19,3 @@ if __name__ == "__main__":
     if df is not None:
         grouped_df = group_packs_by_address(df)
         kml = generate_kml(grouped_df)
-        print(kml.kml())
