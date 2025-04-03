@@ -1,4 +1,5 @@
 import pandas as pd
+import re
 import glob 
 
 def get_file():
@@ -26,6 +27,10 @@ def read_spreasheet(file_path):
         print(f"An unexpected error occurred: {e}")
     return None
 
+def count_packs(df):
+    df['Number of Packs'] = df['Sequence'].astype(str).apply(lambda x: len(re.findall(r'\d+', x)))
+    return df
+
 def group_packs_by_address(df):
     df_subset = df.loc[:, ['Sequence', 'Destination Address', 'Latitude', 'Longitude']].copy()
     df_subset['Sequence'] = df_subset['Sequence'].astype(str)
@@ -35,6 +40,8 @@ def group_packs_by_address(df):
         'Sequence': lambda x: ', '.join(x),
         'Destination Address': 'first'
     })
+    count_packs(grouped)    
+    
     return grouped
 
 def fixing_lat_long_format(df):
