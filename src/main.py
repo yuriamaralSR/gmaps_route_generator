@@ -3,7 +3,7 @@ from generate_kml import generate_kml
 
 def main():
     try:
-        print("[INFO] Reading the spreadsheet...")
+        print(f"[INFO] Reading the spreadsheet {FILE_PATH}...")
         df = read_spreadsheet(FILE_PATH)
 
         if df is None:
