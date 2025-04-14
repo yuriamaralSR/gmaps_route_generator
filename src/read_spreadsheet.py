@@ -8,8 +8,16 @@ def get_file():
         print("No Excel files found in the 'data' directory.")
         return None
     
-    file_path = list_of_files[0]
-    return file_path
+    if len(list_of_files) == 1:
+        file_path = list_of_files[0]
+        return file_path
+    
+    print("Multiple Excel files found. Choose one: ")
+    for index, file in enumerate(list_of_files):
+        print(f"{index + 1}: {file}")
+    
+    choice = int(input("Enter the number of the file: ")) - 1
+    return list_of_files[choice] if 0 <= choice < len(list_of_files) else None
 
 FILE_PATH = get_file()
 
