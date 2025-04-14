@@ -36,6 +36,7 @@ def read_spreadsheet(file_path):
     return None
 
 def count_packs(df):
+    df = df.copy()
     df['Number of Packs'] = df['Sequence'].astype(str).apply(lambda x: len(re.findall(r'\d+', x)))
     return df
 
