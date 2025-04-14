@@ -54,6 +54,5 @@ def group_packs_by_address(df):
     return grouped
 
 def fixing_lat_long_format(df):
-    df['Latitude'] = df.apply(lambda row: row['Latitude']/ 10000000, axis=1)
-    df['Longitude'] = df.apply(lambda row: row['Longitude']/ 10000000, axis=1)
+    df[['Latitude', 'Longitude']] /= 10_000_000
     return df
