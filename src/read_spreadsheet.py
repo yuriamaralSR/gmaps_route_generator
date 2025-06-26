@@ -50,7 +50,7 @@ def group_packs_by_address(df):
         'Neighborhood' : 'first',
         'Destination Address': 'first'
         })
-    count_packs(grouped)    
+    grouped = count_packs(grouped)    
     
     return grouped
 
